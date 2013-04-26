@@ -1,0 +1,3709 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, http://code.google.com/p/wwwsqldesigner/ -->
+<!-- Active URL: http://7.yapro.ru/mysqlScheme/wwwsqldesigner-2.7/index.html -->
+<sql>
+<datatypes db="mysql">
+
+	<group label="Numeric" color="rgb(238,238,170)">
+
+	 	<type label="TINYINT" length="0" sql="TINYINT" quote=""/>
+
+	 	<type label="SMALLINT" length="0" sql="SMALLINT" quote=""/>
+
+	 	<type label="MEDIUMINT" length="0" sql="MEDIUMINT" quote=""/>
+
+	 	<type label="INT" length="0" sql="INT" quote=""/>
+
+		<type label="Integer" length="0" sql="INTEGER" quote=""/>
+
+		<type label="BIGINT" length="0" sql="BIGINT" quote=""/>
+
+		<type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
+
+		<type label="Single precision" length="0" sql="FLOAT" quote=""/>
+
+		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
+
+	</group>
+
+
+
+	<group label="Character" color="rgb(255,200,200)">
+
+		<type label="Char" length="1" sql="CHAR" quote="'"/>
+
+		<type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
+
+		<type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
+
+		<type label="Binary" length="1" sql="BINARY" quote="'"/>
+
+		<type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
+
+		<type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
+
+	</group>
+
+
+
+	<group label="Date &amp; Time" color="rgb(200,255,200)">
+
+		<type label="Date" length="0" sql="DATE" quote="'"/>
+
+		<type label="Time" length="0" sql="TIME" quote="'"/>
+
+		<type label="Datetime" length="0" sql="DATETIME" quote="'"/>
+
+		<type label="Year" length="0" sql="YEAR" quote=""/>
+
+		<type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
+
+	</group>
+
+	
+
+	<group label="Miscellaneous" color="rgb(200,200,255)">
+
+		<type label="ENUM" length="1" sql="ENUM" quote=""/>
+
+		<type label="SET" length="1" sql="SET" quote=""/>
+
+		<type label="Bit" length="0" sql="bit" quote=""/>
+
+	</group>
+
+</datatypes><table x="10" y="10" name="access">
+<row name="module_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="access" null="0" autoincrement="0">
+<datatype>TINYINT(3)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>module_id</part>
+<part>user_id</part>
+</key>
+</table>
+<table x="128" y="10" name="alias">
+<row name="alias_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="k" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="v" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>alias_id</part>
+</key>
+</table>
+<table x="229" y="10" name="cache">
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="time_modified" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<key type="UNIQUE" name="name">
+<part>name</part>
+</key>
+</table>
+<table x="343" y="10" name="comments">
+<row name="comment_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="parent_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="page_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="user_ip" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="time_created" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="time_modified" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="nickname_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+</row>
+<row name="comment" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="karma" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+</row>
+<key type="INDEX" name="page_id">
+<part>page_id</part>
+</key>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+<key type="INDEX" name="page_id__user_id">
+<part>page_id</part>
+<part>user_id</part>
+</key>
+<key type="UNIQUE" name="comment_id">
+<part>comment_id</part>
+</key>
+</table>
+<table x="482" y="10" name="comments_karma">
+<row name="comment_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????????????? ???????????</comment>
+</row>
+<row name="user_ip" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>IP-????? ??????????</comment>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????????????? ????????????</comment>
+</row>
+<row name="karma" null="0" autoincrement="0">
+<datatype>ENUM('0','1')</datatype>
+<default>0</default><comment>???????????? ????? (0 - ??????, 1 - ???????)</comment>
+</row>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+<key type="INDEX" name="comment_id__user_id">
+<part>comment_id</part>
+<part>user_id</part>
+</key>
+<key type="INDEX" name="comment_id__user_ip">
+<part>comment_id</part>
+<part>user_ip</part>
+</key>
+</table>
+<table x="668" y="10" name="communications">
+<row name="communication_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="name" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="module_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+</row>
+<row name="form_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+</row>
+<row name="permission_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>communication_id</part>
+</key>
+</table>
+<table x="845" y="10" name="cookies">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="visitor_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????????????? ??????????</comment>
+</row>
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<comment>??? ????</comment>
+</row>
+<row name="value" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="expire" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+</row>
+<row name="path" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="domain" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="secure" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+</row>
+<key type="INDEX" name="visitor_id">
+<part>visitor_id</part>
+</key>
+<key type="INDEX" name="visitor_id__name">
+<part>visitor_id</part>
+<part>name</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>id</part>
+</key>
+<comment>???? ??????? ???, ??? ? PHP-??????? setcookie</comment>
+</table>
+<table x="1181" y="403" name="cookies_visitors">
+<row name="visitor_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+<comment>????????????? ??????????</comment>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><relation table="f_bookmarks" row="user_id" />
+<comment>????????????? ????????????</comment>
+</row>
+<row name="hash" null="0" autoincrement="0">
+<datatype>VARCHAR(33)</datatype>
+<comment>?????????? ??? ??????????</comment>
+</row>
+<row name="ip" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>? ?????? IP-?????? ?????????? ????? ? ????????? ???</comment>
+</row>
+<row name="time_created" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????? ??????? ????????? ?????????? ?? ?????</comment>
+</row>
+<row name="time_modified" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????? ?????????? ????????? ?????????? ?? ?????</comment>
+</row>
+<row name="cookies_count" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>?????????? ???????????? ????? ? ??????? cookies</comment>
+</row>
+<row name="browser" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>? ?????? ???????? ?????????? ????? ? ????????? ???</comment>
+</row>
+<key type="UNIQUE" name="hash">
+<part>hash</part>
+</key>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>visitor_id</part>
+</key>
+<comment>??????? ?????????? ??????????? ??? ????????????? ? cookies</comment>
+</table>
+<table x="1142" y="10" name="f_acl_groups">
+<row name="group_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="auth_option_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="auth_role_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="auth_setting" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="auth_opt_id">
+<part>auth_option_id</part>
+</key>
+<key type="INDEX" name="auth_role_id">
+<part>auth_role_id</part>
+</key>
+<key type="INDEX" name="group_id">
+<part>group_id</part>
+</key>
+</table>
+<table x="1298" y="10" name="f_acl_options">
+<row name="auth_option_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="auth_option" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="is_global" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="is_local" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="founder_only" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="UNIQUE" name="auth_option">
+<part>auth_option</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>auth_option_id</part>
+</key>
+</table>
+<table x="10" y="274" name="f_acl_roles">
+<row name="role_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="role_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="role_description" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="role_type" null="0" autoincrement="0">
+<datatype>VARCHAR(10)</datatype>
+</row>
+<row name="role_order" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="role_type">
+<part>role_type</part>
+</key>
+<key type="INDEX" name="role_order">
+<part>role_order</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>role_id</part>
+</key>
+</table>
+<table x="153" y="274" name="f_acl_roles_data">
+<row name="role_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="auth_option_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="auth_setting" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="ath_op_id">
+<part>auth_option_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>role_id</part>
+<part>auth_option_id</part>
+</key>
+</table>
+<table x="334" y="274" name="f_acl_users">
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="auth_option_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="auth_role_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="auth_setting" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="auth_option_id">
+<part>auth_option_id</part>
+</key>
+<key type="INDEX" name="auth_role_id">
+<part>auth_role_id</part>
+</key>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+</table>
+<table x="481" y="274" name="f_attachments">
+<row name="attach_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="post_msg_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default><relation table="f_banlist" row="ban_id" />
+</row>
+<row name="topic_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="in_message" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="poster_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="is_orphan" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="physical_filename" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="real_filename" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="download_count" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="attach_comment" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="extension" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="mimetype" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="filesize" null="0" autoincrement="0">
+<datatype>INT(20)</datatype>
+<default>0</default></row>
+<row name="filetime" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="thumbnail" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="topic_id">
+<part>topic_id</part>
+</key>
+<key type="INDEX" name="filetime">
+<part>filetime</part>
+</key>
+<key type="INDEX" name="poster_id">
+<part>poster_id</part>
+</key>
+<key type="INDEX" name="post_msg_id">
+<part>post_msg_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>attach_id</part>
+</key>
+<key type="INDEX" name="is_orphan">
+<part>is_orphan</part>
+</key>
+</table>
+<table x="781" y="160" name="f_banlist">
+<row name="ban_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+<relation table="f_attachments" row="attach_id" />
+</row>
+<row name="ban_userid" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="ban_ip" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="ban_email" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="ban_start" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="ban_end" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="ban_exclude" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="ban_reason" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="ban_give_reason" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="INDEX" name="ban_end">
+<part>ban_end</part>
+</key>
+<key type="INDEX" name="ban_ip">
+<part>ban_ip</part>
+<part>ban_exclude</part>
+</key>
+<key type="INDEX" name="ban_email">
+<part>ban_email</part>
+<part>ban_exclude</part>
+</key>
+<key type="INDEX" name="ban_user">
+<part>ban_userid</part>
+<part>ban_exclude</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>ban_id</part>
+</key>
+</table>
+<table x="969" y="7" name="f_bbcodes">
+<row name="bbcode_id" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="bbcode_tag" null="0" autoincrement="0">
+<datatype>VARCHAR(16)</datatype>
+</row>
+<row name="bbcode_helpline" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="display_on_posting" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="bbcode_match" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="bbcode_tpl2" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="first_pass_match" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="first_pass_replace" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="second_pass_match" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="second_pass_replace" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="INDEX" name="display_on_post">
+<part>display_on_posting</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>bbcode_id</part>
+</key>
+</table>
+<table x="706" y="565" name="f_bookmarks">
+<row name="topic_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>topic_id</part>
+<part>user_id</part>
+</key>
+</table>
+<table x="821" y="372" name="f_bots">
+<row name="bot_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="bot_active" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="bot_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="bot_agent" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="bot_ip" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="INDEX" name="bot_active">
+<part>bot_active</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>bot_id</part>
+</key>
+</table>
+<table x="1218" y="274" name="f_captcha_answers">
+<row name="question_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="answer_text" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="INDEX" name="question_id">
+<part>question_id</part>
+</key>
+</table>
+<table x="10" y="653" name="f_captcha_questions">
+<row name="question_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="strict" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="lang_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="lang_iso" null="0" autoincrement="0">
+<datatype>VARCHAR(30)</datatype>
+</row>
+<row name="question_text" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>question_id</part>
+</key>
+</table>
+<table x="220" y="653" name="f_config">
+<row name="config_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="config_value" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="is_dynamic" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="is_dynamic">
+<part>is_dynamic</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>config_name</part>
+</key>
+</table>
+<table x="345" y="653" name="f_confirm">
+<row name="confirm_id" null="0" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+</row>
+<row name="session_id" null="0" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+</row>
+<row name="confirm_type" null="0" autoincrement="0">
+<datatype>TINYINT(3)</datatype>
+<default>0</default></row>
+<row name="code" null="0" autoincrement="0">
+<datatype>VARCHAR(8)</datatype>
+</row>
+<row name="seed" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="attempts" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="confirm_type">
+<part>confirm_type</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>session_id</part>
+<part>confirm_id</part>
+</key>
+</table>
+<table x="478" y="653" name="f_disallow">
+<row name="disallow_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="disallow_username" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>disallow_id</part>
+</key>
+</table>
+<table x="624" y="653" name="f_drafts">
+<row name="draft_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="save_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="draft_subject" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="draft_message" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="INDEX" name="save_time">
+<part>save_time</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>draft_id</part>
+</key>
+</table>
+<table x="748" y="653" name="f_extension_groups">
+<row name="group_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="group_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="cat_id" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<default>0</default></row>
+<row name="allow_group" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="download_mode" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="upload_icon" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="max_filesize" null="0" autoincrement="0">
+<datatype>INT(20)</datatype>
+<default>0</default></row>
+<row name="allowed_forums" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="allow_in_pm" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>group_id</part>
+</key>
+</table>
+<table x="948" y="653" name="f_extensions">
+<row name="extension_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="group_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="extension" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>extension_id</part>
+</key>
+</table>
+<table x="1103" y="653" name="f_forums">
+<row name="forum_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="parent_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="left_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="right_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_parents" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="forum_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="forum_desc" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="forum_desc_bitfield" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="forum_desc_options" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>7</default></row>
+<row name="forum_desc_uid" null="0" autoincrement="0">
+<datatype>VARCHAR(8)</datatype>
+</row>
+<row name="forum_link" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="forum_password" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="forum_style" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_image" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="forum_rules" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="forum_rules_link" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="forum_rules_bitfield" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="forum_rules_options" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>7</default></row>
+<row name="forum_rules_uid" null="0" autoincrement="0">
+<datatype>VARCHAR(8)</datatype>
+</row>
+<row name="forum_topics_per_page" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="forum_type" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="forum_status" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="forum_posts" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_topics" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_topics_real" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_last_post_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_last_poster_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_last_post_subject" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="forum_last_post_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="forum_last_poster_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="forum_last_poster_colour" null="0" autoincrement="0">
+<datatype>VARCHAR(6)</datatype>
+</row>
+<row name="forum_flags" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>32</default></row>
+<row name="display_on_index" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="enable_indexing" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="enable_icons" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="enable_prune" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="prune_next" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="prune_days" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="prune_viewed" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="prune_freq" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="display_subforum_list" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="forum_options" null="0" autoincrement="0">
+<datatype>INT(20)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="forum_lastpost_id">
+<part>forum_last_post_id</part>
+</key>
+<key type="INDEX" name="left_right_id">
+<part>left_id</part>
+<part>right_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>forum_id</part>
+</key>
+</table>
+<table x="988" y="534" name="f_forums_access">
+<row name="forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="session_id" null="0" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>forum_id</part>
+<part>user_id</part>
+<part>session_id</part>
+</key>
+</table>
+<table x="10" y="1653" name="f_forums_track">
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="mark_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>user_id</part>
+<part>forum_id</part>
+</key>
+</table>
+<table x="181" y="1653" name="f_forums_watch">
+<row name="forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="notify_status" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+<key type="INDEX" name="notify_stat">
+<part>notify_status</part>
+</key>
+<key type="INDEX" name="forum_id">
+<part>forum_id</part>
+</key>
+</table>
+<table x="359" y="1653" name="f_groups">
+<row name="group_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="group_type" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>1</default></row>
+<row name="group_founder_manage" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="group_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="group_desc" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="group_desc_bitfield" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="group_desc_options" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>7</default></row>
+<row name="group_desc_uid" null="0" autoincrement="0">
+<datatype>VARCHAR(8)</datatype>
+</row>
+<row name="group_display" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="group_avatar" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="group_avatar_type" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<default>0</default></row>
+<row name="group_avatar_width" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="group_avatar_height" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="group_rank" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="group_colour" null="0" autoincrement="0">
+<datatype>VARCHAR(6)</datatype>
+</row>
+<row name="group_sig_chars" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="group_receive_pm" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="group_message_limit" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="group_legend" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="group_max_recipients" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="group_skip_auth" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="group_legend_name">
+<part>group_legend</part>
+<part>group_name</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>group_id</part>
+</key>
+</table>
+<table x="537" y="1653" name="f_icons">
+<row name="icons_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="icons_url" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="icons_width" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="icons_height" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="icons_order" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="display_on_posting" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<key type="INDEX" name="display_on_posting">
+<part>display_on_posting</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>icons_id</part>
+</key>
+</table>
+<table x="686" y="1653" name="f_lang">
+<row name="lang_id" null="0" autoincrement="1">
+<datatype>TINYINT(4)</datatype>
+</row>
+<row name="lang_iso" null="0" autoincrement="0">
+<datatype>VARCHAR(30)</datatype>
+</row>
+<row name="lang_dir" null="0" autoincrement="0">
+<datatype>VARCHAR(30)</datatype>
+</row>
+<row name="lang_english_name" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="lang_local_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="lang_author" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="INDEX" name="lang_iso">
+<part>lang_iso</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>lang_id</part>
+</key>
+</table>
+<table x="833" y="1653" name="f_log">
+<row name="log_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="log_type" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="reportee_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="log_ip" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="log_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="log_operation" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="log_data" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="INDEX" name="topic_id">
+<part>topic_id</part>
+</key>
+<key type="INDEX" name="log_type">
+<part>log_type</part>
+</key>
+<key type="INDEX" name="reportee_id">
+<part>reportee_id</part>
+</key>
+<key type="INDEX" name="forum_id">
+<part>forum_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>log_id</part>
+</key>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+</table>
+<table x="946" y="1653" name="f_login_attempts">
+<row name="attempt_ip" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="attempt_browser" null="0" autoincrement="0">
+<datatype>VARCHAR(150)</datatype>
+</row>
+<row name="attempt_forwarded_for" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="attempt_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="username" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default>'0'</default></row>
+<row name="username_clean" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default>'0'</default></row>
+<key type="INDEX" name="att_time">
+<part>attempt_time</part>
+</key>
+<key type="INDEX" name="att_for">
+<part>attempt_forwarded_for</part>
+<part>attempt_time</part>
+</key>
+<key type="INDEX" name="att_ip">
+<part>attempt_ip</part>
+<part>attempt_time</part>
+</key>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+</table>
+<table x="1129" y="1653" name="f_moderator_cache">
+<row name="forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="username" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="group_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="group_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="display_on_index" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<key type="INDEX" name="forum_id">
+<part>forum_id</part>
+</key>
+<key type="INDEX" name="disp_idx">
+<part>display_on_index</part>
+</key>
+</table>
+<table x="1329" y="1653" name="f_modules">
+<row name="module_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="module_enabled" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="module_display" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="module_basename" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="module_class" null="0" autoincrement="0">
+<datatype>VARCHAR(10)</datatype>
+</row>
+<row name="parent_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="left_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="right_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="module_langname" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="module_mode" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="module_auth" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="INDEX" name="module_enabled">
+<part>module_enabled</part>
+</key>
+<key type="INDEX" name="left_right_id">
+<part>left_id</part>
+<part>right_id</part>
+</key>
+<key type="INDEX" name="class_left_id">
+<part>module_class</part>
+<part>left_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>module_id</part>
+</key>
+</table>
+<table x="10" y="2170" name="f_poll_options">
+<row name="poll_option_id" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="topic_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="poll_option_text" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="poll_option_total" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="topic_id">
+<part>topic_id</part>
+</key>
+<key type="INDEX" name="poll_opt_id">
+<part>poll_option_id</part>
+</key>
+</table>
+<table x="173" y="2170" name="f_poll_votes">
+<row name="topic_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="poll_option_id" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="vote_user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="vote_user_ip" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<key type="INDEX" name="vote_user_id">
+<part>vote_user_id</part>
+</key>
+<key type="INDEX" name="vote_user_ip">
+<part>vote_user_ip</part>
+</key>
+<key type="INDEX" name="topic_id">
+<part>topic_id</part>
+</key>
+</table>
+<table x="325" y="2170" name="f_posts">
+<row name="post_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="topic_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="poster_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="icon_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="poster_ip" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="post_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="post_approved" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="post_reported" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="enable_bbcode" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="enable_smilies" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="enable_magic_url" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="enable_sig" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="post_username" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="post_subject" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="post_text" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="post_checksum" null="0" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
+</row>
+<row name="post_attachment" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="bbcode_bitfield" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="bbcode_uid" null="0" autoincrement="0">
+<datatype>VARCHAR(8)</datatype>
+</row>
+<row name="post_postcount" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="post_edit_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="post_edit_reason" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="post_edit_user" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="post_edit_count" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="post_edit_locked" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="poster_ip">
+<part>poster_ip</part>
+</key>
+<key type="INDEX" name="forum_id">
+<part>forum_id</part>
+</key>
+<key type="INDEX" name="post_username">
+<part>post_username</part>
+</key>
+<key type="INDEX" name="tid_post_time">
+<part>topic_id</part>
+<part>post_time</part>
+</key>
+<key type="INDEX" name="poster_id">
+<part>poster_id</part>
+</key>
+<key type="INDEX" name="topic_id">
+<part>topic_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>post_id</part>
+</key>
+<key type="INDEX" name="post_approved">
+<part>post_approved</part>
+</key>
+</table>
+<table x="463" y="2170" name="f_privmsgs">
+<row name="msg_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="root_level" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="author_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="icon_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="author_ip" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="message_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="enable_bbcode" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="enable_smilies" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="enable_magic_url" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="enable_sig" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="message_subject" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="message_text" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="message_edit_reason" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="message_edit_user" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="message_attachment" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="bbcode_bitfield" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="bbcode_uid" null="0" autoincrement="0">
+<datatype>VARCHAR(8)</datatype>
+</row>
+<row name="message_edit_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="message_edit_count" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="to_address" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="bcc_address" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="message_reported" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="author_id">
+<part>author_id</part>
+</key>
+<key type="INDEX" name="author_ip">
+<part>author_ip</part>
+</key>
+<key type="INDEX" name="root_level">
+<part>root_level</part>
+</key>
+<key type="INDEX" name="message_time">
+<part>message_time</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>msg_id</part>
+</key>
+</table>
+<table x="629" y="2170" name="f_privmsgs_folder">
+<row name="folder_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="folder_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="pm_count" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>folder_id</part>
+</key>
+</table>
+<table x="816" y="2170" name="f_privmsgs_rules">
+<row name="rule_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="rule_check" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="rule_connection" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="rule_string" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="rule_user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="rule_group_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="rule_action" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="rule_folder_id" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>rule_id</part>
+</key>
+</table>
+<table x="997" y="2170" name="f_privmsgs_to">
+<row name="msg_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="author_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="pm_deleted" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="pm_new" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="pm_unread" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="pm_replied" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="pm_marked" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="pm_forwarded" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="folder_id" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="author_id">
+<part>author_id</part>
+</key>
+<key type="INDEX" name="usr_flder_id">
+<part>user_id</part>
+<part>folder_id</part>
+</key>
+<key type="INDEX" name="msg_id">
+<part>msg_id</part>
+</key>
+</table>
+<table x="1161" y="2170" name="f_profile_fields">
+<row name="field_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="field_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="field_type" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="field_ident" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<row name="field_length" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<row name="field_minlen" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="field_maxlen" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="field_novalue" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="field_default_value" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="field_validation" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+</row>
+<row name="field_required" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="field_show_on_reg" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="field_hide" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="field_no_view" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="field_active" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="field_order" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="field_show_profile" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="field_show_on_vt" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="field_show_novalue" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="fld_type">
+<part>field_type</part>
+</key>
+<key type="INDEX" name="fld_ordr">
+<part>field_order</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>field_id</part>
+</key>
+</table>
+<table x="1328" y="2170" name="f_profile_fields_data">
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="pf_comments_karma" null="0" autoincrement="0">
+<datatype>BIGINT(20)</datatype>
+<comment>??????? ?? ??????????? - ?????????? ??????? ?????????? ????????????? ?? ??????????? ?? ????? (????? ???? ?????????????)</comment>
+</row>
+<row name="pf_page_votes" null="0" autoincrement="0">
+<datatype>BIGINT(20)</datatype>
+<comment>??????? ?? ?????? - ?????????? ??????? ?????????? ????????????? ?? ?????? ?? ????? (????? ???? ?????????????)</comment>
+</row>
+<row name="pf_user_rating" null="0" autoincrement="0">
+<datatype>BIGINT(20)</datatype>
+<comment>??????? ???????????? - ?????????????? ???????? ?? ???????????? ?????? ? ????????????</comment>
+</row>
+<row name="pf_user_karma" null="0" autoincrement="0">
+<datatype>BIGINT(20)</datatype>
+<comment>????? ???????????? - ?????????? ???????????? ??????????? ??????? ?????????????? (????? ???? ?????????????)</comment>
+</row>
+<row name="pf_bookmarks_users" null="0" autoincrement="0">
+<datatype>BIGINT(20)</datatype>
+<comment>? ????????? ? ????????????? - ?????????? ??? ??????????? ? ????????? ??????? ????????????</comment>
+</row>
+<row name="pf_blog" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>?????????? ????? - ?????? ?????????? ????? ? ???????? ?????</comment>
+</row>
+<row name="pf_user_sex" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<comment>??? ?/? - 0 - ???????, 1 - ?, 2 - ?</comment>
+</row>
+<row name="pf_blog_name" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>??? ????? - ?????? ?????????? ????? ? ???????? ?????</comment>
+</row>
+<row name="pf_admin_info" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>?????????? ? ???????????? - ??????? ??????????????</comment>
+</row>
+<row name="pf_auto_save" null="0" autoincrement="0">
+<datatype>BIGINT(20)</datatype>
+<comment>?????????????? c?????? - ???? ?????? ????, ?????????? ?????? ??????????? ?????? ? ?????</comment>
+</row>
+<row name="pf_save_url" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<comment>??????? URL - ??????? ????????? ??? ? ??????? ????????????????? (???????? ???????????)</comment>
+</row>
+<row name="pf_save_selected" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<comment>??????? ????? - ??????? ????? ? ????????? ?????????? (???????? ???????????)</comment>
+</row>
+<row name="pf_show_size_dirs" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<comment>?????? ?????????? - ?????????? ?????? ?????????? ? ????????????? (???????????? ???????)</comment>
+</row>
+<row name="pf_browser_detect" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<comment>???????? ???????? - ????????? ??? ???????? ??? ??????????? ? ??????? ????????????????? (?????????? ??????)</comment>
+</row>
+<row name="pf_check_ip" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<comment>???????? IP - ????????? IP-????? ??? ??????????? ? ??????? ????????????????? (?????????? ??????)</comment>
+</row>
+<row name="pf_allow_ip" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>?????? ?????? ? IP - ????? ?????????, ????? ???????</comment>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>user_id</part>
+</key>
+</table>
+<table x="10" y="2802" name="f_profile_fields_lang">
+<row name="field_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="lang_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="option_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="field_type" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="lang_value" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>field_id</part>
+<part>lang_id</part>
+<part>option_id</part>
+</key>
+</table>
+<table x="212" y="2802" name="f_profile_lang">
+<row name="field_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="lang_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="lang_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<comment>??? ????/?????????, ???????????? ????????????</comment>
+</row>
+<row name="lang_explain" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>???????? ???? (????????? ? ????, ???????????? ????????????)</comment>
+</row>
+<row name="lang_default_value" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>field_id</part>
+<part>lang_id</part>
+</key>
+</table>
+<table x="372" y="2802" name="f_ranks">
+<row name="rank_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="rank_title" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="rank_min" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="rank_special" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="rank_image" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>rank_id</part>
+</key>
+</table>
+<table x="492" y="2802" name="f_reports">
+<row name="report_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="reason_id" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="post_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_notify" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="report_closed" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="report_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="report_text" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="pm_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="post_id">
+<part>post_id</part>
+</key>
+<key type="INDEX" name="pm_id">
+<part>pm_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>report_id</part>
+</key>
+</table>
+<table x="624" y="2802" name="f_reports_reasons">
+<row name="reason_id" null="0" autoincrement="1">
+<datatype>SMALLINT(4)</datatype>
+</row>
+<row name="reason_title" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="reason_description" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="reason_order" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>reason_id</part>
+</key>
+</table>
+<table x="815" y="2802" name="f_search_results">
+<row name="search_key" null="0" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
+</row>
+<row name="search_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="search_keywords" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="search_authors" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>search_key</part>
+</key>
+</table>
+<table x="996" y="2802" name="f_search_wordlist">
+<row name="word_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="word_text" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="word_common" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="word_count" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<key type="UNIQUE" name="wrd_txt">
+<part>word_text</part>
+</key>
+<key type="INDEX" name="wrd_cnt">
+<part>word_count</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>word_id</part>
+</key>
+</table>
+<table x="1184" y="2802" name="f_search_wordmatch">
+<row name="post_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="word_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="title_match" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="word_id">
+<part>word_id</part>
+</key>
+<key type="INDEX" name="post_id">
+<part>post_id</part>
+</key>
+<key type="UNIQUE" name="unq_mtch">
+<part>word_id</part>
+<part>post_id</part>
+<part>title_match</part>
+</key>
+</table>
+<table x="10" y="3043" name="f_sessions">
+<row name="session_id" null="0" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+</row>
+<row name="session_user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="session_last_visit" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="session_start" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="session_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="session_ip" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="session_browser" null="0" autoincrement="0">
+<datatype>VARCHAR(150)</datatype>
+</row>
+<row name="session_forwarded_for" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="session_page" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="session_viewonline" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="session_autologin" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="session_admin" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="session_forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="session_forum_id">
+<part>session_forum_id</part>
+</key>
+<key type="INDEX" name="session_time">
+<part>session_time</part>
+</key>
+<key type="INDEX" name="session_user_id">
+<part>session_user_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>session_id</part>
+</key>
+</table>
+<table x="182" y="3043" name="f_sessions_keys">
+<row name="key_id" null="0" autoincrement="0">
+<datatype>CHAR(32)</datatype>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="last_ip" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="last_login" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>key_id</part>
+<part>user_id</part>
+</key>
+</table>
+<table x="360" y="3043" name="f_sitelist">
+<row name="site_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="site_ip" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="site_hostname" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="ip_exclude" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>site_id</part>
+</key>
+</table>
+<table x="488" y="3043" name="f_smilies">
+<row name="smiley_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="code" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="emotion" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="smiley_url" null="0" autoincrement="0">
+<datatype>VARCHAR(50)</datatype>
+</row>
+<row name="smiley_width" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="smiley_height" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="smiley_order" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="display_on_posting" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<key type="INDEX" name="display_on_post">
+<part>display_on_posting</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>smiley_id</part>
+</key>
+</table>
+<table x="637" y="3043" name="f_styles">
+<row name="style_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="style_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="style_copyright" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="style_active" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="template_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="theme_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="imageset_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="theme_id">
+<part>theme_id</part>
+</key>
+<key type="UNIQUE" name="style_name">
+<part>style_name</part>
+</key>
+<key type="INDEX" name="imageset_id">
+<part>imageset_id</part>
+</key>
+<key type="INDEX" name="template_id">
+<part>template_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>style_id</part>
+</key>
+</table>
+<table x="763" y="3043" name="f_styles_imageset">
+<row name="imageset_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="imageset_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="imageset_copyright" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="imageset_path" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<key type="UNIQUE" name="imgset_nm">
+<part>imageset_name</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>imageset_id</part>
+</key>
+</table>
+<table x="954" y="3043" name="f_styles_imageset_data">
+<row name="image_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="image_name" null="0" autoincrement="0">
+<datatype>VARCHAR(200)</datatype>
+</row>
+<row name="image_filename" null="0" autoincrement="0">
+<datatype>VARCHAR(200)</datatype>
+</row>
+<row name="image_lang" null="0" autoincrement="0">
+<datatype>VARCHAR(30)</datatype>
+</row>
+<row name="image_height" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="image_width" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="imageset_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="i_d">
+<part>imageset_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>image_id</part>
+</key>
+</table>
+<table x="1183" y="3043" name="f_styles_template">
+<row name="template_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="template_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="template_copyright" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="template_path" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="bbcode_bitfield" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default>'kNg='</default></row>
+<row name="template_storedb" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="template_inherits_id" null="0" autoincrement="0">
+<datatype>INT(4)</datatype>
+<default>0</default></row>
+<row name="template_inherit_path" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="UNIQUE" name="tmplte_nm">
+<part>template_name</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>template_id</part>
+</key>
+</table>
+<table x="10" y="3376" name="f_styles_template_data">
+<row name="template_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="template_filename" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="template_included" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="template_mtime" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="template_data" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="INDEX" name="tfn">
+<part>template_filename</part>
+</key>
+<key type="INDEX" name="tid">
+<part>template_id</part>
+</key>
+</table>
+<table x="238" y="3376" name="f_styles_theme">
+<row name="theme_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="theme_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="theme_copyright" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="theme_path" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="theme_storedb" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="theme_mtime" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="theme_data" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="UNIQUE" name="theme_name">
+<part>theme_name</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>theme_id</part>
+</key>
+</table>
+<table x="411" y="3376" name="f_topics">
+<row name="topic_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="icon_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_attachment" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="topic_approved" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="topic_reported" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="topic_title" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="topic_poster" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="topic_time_limit" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="topic_views" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_replies" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_replies_real" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_status" null="0" autoincrement="0">
+<datatype>TINYINT(3)</datatype>
+<default>0</default></row>
+<row name="topic_type" null="0" autoincrement="0">
+<datatype>TINYINT(3)</datatype>
+<default>0</default></row>
+<row name="topic_first_post_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_first_poster_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="topic_first_poster_colour" null="0" autoincrement="0">
+<datatype>VARCHAR(6)</datatype>
+</row>
+<row name="topic_last_post_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_last_poster_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_last_poster_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="topic_last_poster_colour" null="0" autoincrement="0">
+<datatype>VARCHAR(6)</datatype>
+</row>
+<row name="topic_last_post_subject" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="topic_last_post_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="topic_last_view_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="topic_moved_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_bumped" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="topic_bumper" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="poll_title" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="poll_start" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="poll_length" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="poll_max_options" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>1</default></row>
+<row name="poll_last_vote" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="poll_vote_change" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="fid_time_moved">
+<part>forum_id</part>
+<part>topic_last_post_time</part>
+<part>topic_moved_id</part>
+</key>
+<key type="INDEX" name="topic_approved">
+<part>topic_approved</part>
+</key>
+<key type="INDEX" name="forum_id">
+<part>forum_id</part>
+</key>
+<key type="INDEX" name="forum_appr_last">
+<part>forum_id</part>
+<part>topic_approved</part>
+<part>topic_last_post_id</part>
+</key>
+<key type="INDEX" name="last_post_time">
+<part>topic_last_post_time</part>
+</key>
+<key type="INDEX" name="forum_id_type">
+<part>forum_id</part>
+<part>topic_type</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>topic_id</part>
+</key>
+</table>
+<table x="600" y="3376" name="f_topics_posted">
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_posted" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>user_id</part>
+<part>topic_id</part>
+</key>
+</table>
+<table x="778" y="3376" name="f_topics_track">
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="topic_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="forum_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="mark_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="forum_id">
+<part>forum_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>user_id</part>
+<part>topic_id</part>
+</key>
+</table>
+<table x="945" y="3376" name="f_topics_watch">
+<row name="topic_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="notify_status" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+<key type="INDEX" name="notify_stat">
+<part>notify_status</part>
+</key>
+<key type="INDEX" name="topic_id">
+<part>topic_id</part>
+</key>
+</table>
+<table x="1119" y="3376" name="f_user_group">
+<row name="group_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="group_leader" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="user_pending" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+<key type="INDEX" name="group_leader">
+<part>group_leader</part>
+</key>
+<key type="INDEX" name="group_id">
+<part>group_id</part>
+</key>
+</table>
+<table x="1277" y="3376" name="f_users">
+<row name="user_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="user_type" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<default>0</default></row>
+<row name="group_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>3</default></row>
+<row name="user_permissions" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="user_perm_from" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_ip" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="user_regdate" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="username" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="username_clean" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="user_password" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="user_passchg" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="user_pass_convert" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="user_email" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="user_email_hash" null="0" autoincrement="0">
+<datatype>BIGINT(20)</datatype>
+<default>0</default></row>
+<row name="user_birthday" null="0" autoincrement="0">
+<datatype>VARCHAR(10)</datatype>
+</row>
+<row name="user_lastvisit" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="user_lastmark" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="user_lastpost_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="user_lastpage" null="0" autoincrement="0">
+<datatype>VARCHAR(200)</datatype>
+</row>
+<row name="user_last_confirm_key" null="0" autoincrement="0">
+<datatype>VARCHAR(10)</datatype>
+</row>
+<row name="user_last_search" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="user_warnings" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="user_last_warning" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="user_login_attempts" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="user_inactive_reason" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<default>0</default></row>
+<row name="user_inactive_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="user_posts" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_lang" null="0" autoincrement="0">
+<datatype>VARCHAR(30)</datatype>
+</row>
+<row name="user_timezone" null="0" autoincrement="0">
+<datatype>DECIMAL(5,2)</datatype>
+<default>0.00</default></row>
+<row name="user_dst" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="user_dateformat" null="0" autoincrement="0">
+<datatype>VARCHAR(30)</datatype>
+<default>'d M Y H:i'</default></row>
+<row name="user_style" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_rank" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="user_colour" null="0" autoincrement="0">
+<datatype>VARCHAR(6)</datatype>
+</row>
+<row name="user_new_privmsg" null="0" autoincrement="0">
+<datatype>INT(4)</datatype>
+<default>0</default></row>
+<row name="user_unread_privmsg" null="0" autoincrement="0">
+<datatype>INT(4)</datatype>
+<default>0</default></row>
+<row name="user_last_privmsg" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="user_message_rules" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="user_full_folder" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>-3</default></row>
+<row name="user_emailtime" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<row name="user_topic_show_days" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="user_topic_sortby_type" null="0" autoincrement="0">
+<datatype>VARCHAR(1)</datatype>
+<default>'t'</default></row>
+<row name="user_topic_sortby_dir" null="0" autoincrement="0">
+<datatype>VARCHAR(1)</datatype>
+<default>'d'</default></row>
+<row name="user_post_show_days" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="user_post_sortby_type" null="0" autoincrement="0">
+<datatype>VARCHAR(1)</datatype>
+<default>'t'</default></row>
+<row name="user_post_sortby_dir" null="0" autoincrement="0">
+<datatype>VARCHAR(1)</datatype>
+<default>'a'</default></row>
+<row name="user_notify" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="user_notify_pm" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="user_notify_type" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="user_allow_pm" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="user_allow_viewonline" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="user_allow_viewemail" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="user_allow_massemail" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="user_options" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>230271</default></row>
+<row name="user_avatar" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="user_avatar_type" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<default>0</default></row>
+<row name="user_avatar_width" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="user_avatar_height" null="0" autoincrement="0">
+<datatype>SMALLINT(4)</datatype>
+<default>0</default></row>
+<row name="user_sig" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="user_sig_bbcode_uid" null="0" autoincrement="0">
+<datatype>VARCHAR(8)</datatype>
+</row>
+<row name="user_sig_bbcode_bitfield" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="user_from" null="0" autoincrement="0">
+<datatype>VARCHAR(100)</datatype>
+</row>
+<row name="user_icq" null="0" autoincrement="0">
+<datatype>VARCHAR(15)</datatype>
+</row>
+<row name="user_aim" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="user_yim" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="user_msnm" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="user_jabber" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="user_website" null="0" autoincrement="0">
+<datatype>VARCHAR(200)</datatype>
+</row>
+<row name="user_occ" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="user_interests" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="user_actkey" null="0" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
+</row>
+<row name="user_newpasswd" null="0" autoincrement="0">
+<datatype>VARCHAR(40)</datatype>
+</row>
+<row name="user_form_salt" null="0" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
+</row>
+<row name="user_new" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>1</default></row>
+<row name="user_reminded" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="user_reminded_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="user_email_hash">
+<part>user_email_hash</part>
+</key>
+<key type="UNIQUE" name="username_clean">
+<part>username_clean</part>
+</key>
+<key type="INDEX" name="user_type">
+<part>user_type</part>
+</key>
+<key type="INDEX" name="user_birthday">
+<part>user_birthday</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>user_id</part>
+</key>
+</table>
+<table x="10" y="5158" name="f_warnings">
+<row name="warning_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="post_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="log_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="warning_time" null="0" autoincrement="0">
+<datatype>INT(11)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>warning_id</part>
+</key>
+</table>
+<table x="153" y="5158" name="f_words">
+<row name="word_id" null="0" autoincrement="1">
+<datatype>MEDIUMINT(8)</datatype>
+</row>
+<row name="word" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="replacement" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>word_id</part>
+</key>
+</table>
+<table x="277" y="5158" name="f_zebra">
+<row name="user_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="zebra_id" null="0" autoincrement="0">
+<datatype>MEDIUMINT(8)</datatype>
+<default>0</default></row>
+<row name="friend" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="foe" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>user_id</part>
+<part>zebra_id</part>
+</key>
+</table>
+<table x="398" y="5158" name="fields">
+<row name="field_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="parent_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="position" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="access" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="checking" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="must" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="type" null="0" autoincrement="0">
+<datatype>TINYINT(2)</datatype>
+<default>0</default></row>
+<row name="title" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="name" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="value" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="script_path" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="file_types" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="wysiwyg" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="height" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+</row>
+<row name="sync_pages" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="sync_mail" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="parent_id">
+<part>parent_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>field_id</part>
+</key>
+</table>
+<table x="504" y="5158" name="files_downloads">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="date_time" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="from_domain" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="from_path" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>? ????? ????????</comment>
+</row>
+<row name="to_domain" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<comment>? ?????? ?????</comment>
+</row>
+<row name="to_path" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>???? ? ?????</comment>
+</row>
+<row name="ignored_hash" null="0" autoincrement="0">
+<datatype>VARCHAR(32)</datatype>
+<comment>??? ???? ? ?????</comment>
+</row>
+<row name="ip" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+</row>
+<row name="browser_version" null="0" autoincrement="0">
+<datatype>TINYINT(3)</datatype>
+</row>
+<row name="browser_version_full" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="browser_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="browser_name_full" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="java_on" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="operation_system" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="screen_width" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="screen_height" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="flash_version" null="0" autoincrement="0">
+<datatype>TINYINT(3)</datatype>
+<default>0</default></row>
+<key type="INDEX" name="flash_version">
+<part>flash_version</part>
+</key>
+<key type="INDEX" name="screen_width">
+<part>screen_width</part>
+</key>
+<key type="INDEX" name="java_on">
+<part>java_on</part>
+</key>
+<key type="INDEX" name="from_domain">
+<part>from_domain</part>
+</key>
+<key type="INDEX" name="ip">
+<part>ip</part>
+</key>
+<key type="INDEX" name="browser_version">
+<part>browser_version</part>
+</key>
+<key type="INDEX" name="screen_height">
+<part>screen_height</part>
+</key>
+<key type="INDEX" name="operation_system">
+<part>operation_system</part>
+</key>
+<key type="INDEX" name="ignored_hash">
+<part>ignored_hash</part>
+</key>
+<key type="INDEX" name="to_domain">
+<part>to_domain</part>
+</key>
+<key type="INDEX" name="browser_name">
+<part>browser_name</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>id</part>
+</key>
+<comment>???????? ?? ?????????????? ???????? ?????</comment>
+</table>
+<table x="679" y="5158" name="mail_duplicates">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+<comment>????????????? ??????</comment>
+</row>
+<row name="size" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>?????? ?????? ? ??????</comment>
+</row>
+<row name="important" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default><comment>???????? ?????? (0 - ????????, 1 - ??????)</comment>
+</row>
+<row name="delivered" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default><comment>????????? ?????? ? ??????? (0 - ?? ????????, 1 - ????????)</comment>
+</row>
+<row name="time_sent" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????? ??????????? ??????</comment>
+</row>
+<row name="from_email" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>? ?????? E-mail ???? ?????????? ??????</comment>
+</row>
+<row name="to_email" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>?? ????? E-mail ???? ?????????? ??????</comment>
+</row>
+<row name="subj" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>???? ??????</comment>
+</row>
+<row name="message" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>????? ??????</comment>
+</row>
+<key type="UNIQUE" name="id">
+<part>id</part>
+</key>
+</table>
+<table x="851" y="5158" name="modules">
+<row name="module_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="parent_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="position" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="type" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="path" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="UNIQUE" name="module_id">
+<part>module_id</part>
+</key>
+</table>
+<table x="976" y="5158" name="nicknames">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="nickname" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="UNIQUE" name="nickname">
+<part>nickname</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>id</part>
+</key>
+</table>
+<table x="1116" y="5158" name="pages">
+<row name="page_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+<comment>????????????? ????????</comment>
+</row>
+<row name="parent_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????????????? ???????????? ????????</comment>
+</row>
+<row name="nesting" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>??????? ??????????? (????? ??????? ??????? ????????)</comment>
+</row>
+<row name="position" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>русский</comment>
+</row>
+<row name="access" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default><comment>????? ??????? ? ??????? ???????? ??? ???????</comment>
+</row>
+<row name="access_inherited" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default><comment>????? ??????? ? ??????? ???????? ??? ???????, ? ?????? ????????????? ?? ???????????? ????????</comment>
+</row>
+<row name="time_created" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>???? ???????? ????????</comment>
+</row>
+<row name="time_modified" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>???? ????????? ????????</comment>
+</row>
+<row name="name" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>??? ????????</comment>
+</row>
+<row name="comment_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????????????? ?????????? ???????????</comment>
+</row>
+<row name="comment_user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????????????? ???????????? ????????????? ????????? ???????????</comment>
+</row>
+<row name="comment_time" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????? ?????????? ?????????? ???????????</comment>
+</row>
+<row name="comments" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????? ???????????? ?? ????????</comment>
+</row>
+<row name="rating_sum" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????????? ?????? ????????</comment>
+</row>
+<row name="rating_users" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????????? IP-???????????</comment>
+</row>
+<row name="tags" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>????:</comment>
+</row>
+<row name="img" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>??????????? ??????:</comment>
+</row>
+<row name="article" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>????????:</comment>
+</row>
+<row name="menu" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<comment>?????????? ????? ? ????:</comment>
+</row>
+<row name="title" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>Title (?????????):</comment>
+</row>
+<row name="description" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>Description (????????):</comment>
+</row>
+<row name="keywords" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>Keywords (???????? ?????):</comment>
+</row>
+<row name="nivo_slider" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>??????????? ???????:</comment>
+</row>
+<key type="INDEX" name="access_inherited">
+<part>access_inherited</part>
+</key>
+<key type="INDEX" name="parent_id">
+<part>parent_id</part>
+</key>
+<key type="INDEX" name="nesting">
+<part>nesting</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>page_id</part>
+</key>
+<comment>???????? ?????</comment>
+</table>
+<table x="1255" y="5158" name="pages_301">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="date_time" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="from_domain" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="from_path" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="error_link" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>????? ???????????? ??????</comment>
+</row>
+<row name="to_path" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>?????????? ????? ??????</comment>
+</row>
+<row name="path_ignored" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="ip" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+</row>
+<row name="browser_version" null="0" autoincrement="0">
+<datatype>TINYINT(3)</datatype>
+</row>
+<row name="browser_version_full" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="browser_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="browser_name_full" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="INDEX" name="from_path">
+<part>from_path</part>
+</key>
+<key type="INDEX" name="browser_name">
+<part>browser_name</part>
+</key>
+<key type="INDEX" name="browser_version">
+<part>browser_version</part>
+</key>
+<key type="INDEX" name="path_ignored">
+<part>path_ignored</part>
+</key>
+<key type="INDEX" name="ip">
+<part>ip</part>
+</key>
+<key type="INDEX" name="from_domain">
+<part>from_domain</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>id</part>
+</key>
+<comment>???????? ?? ?????????????? ???????? ?????</comment>
+</table>
+<table x="10" y="5721" name="pages_404">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="date_time" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="from_domain" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="from_path" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="from_search_system" null="0" autoincrement="0">
+<datatype>TINYINT(3)</datatype>
+</row>
+<row name="path_404" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="path_ignored" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="ip" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+</row>
+<row name="browser_version" null="0" autoincrement="0">
+<datatype>TINYINT(3)</datatype>
+</row>
+<row name="browser_version_full" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="browser_name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<row name="browser_name_full" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="INDEX" name="path_404">
+<part>path_404</part>
+</key>
+<key type="INDEX" name="from_search_system">
+<part>from_search_system</part>
+</key>
+<key type="INDEX" name="browser_name">
+<part>browser_name</part>
+</key>
+<key type="INDEX" name="browser_version">
+<part>browser_version</part>
+</key>
+<key type="INDEX" name="path_ignored">
+<part>path_ignored</part>
+</key>
+<key type="INDEX" name="from_path">
+<part>from_path</part>
+</key>
+<key type="INDEX" name="ip">
+<part>ip</part>
+</key>
+<key type="INDEX" name="from_domain">
+<part>from_domain</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>id</part>
+</key>
+<comment>???????? ?? ?????????????? ???????? ?????</comment>
+</table>
+<table x="176" y="5721" name="pages_archive">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="page_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="module_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="form_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="time_modified" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="pagename" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+</row>
+<key type="INDEX" name="page_id">
+<part>page_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>id</part>
+</key>
+</table>
+<table x="343" y="5721" name="pages_bookmarks">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+<comment>?? ??????</comment>
+</row>
+<row name="visitor_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>?? ??????????</comment>
+</row>
+<row name="page_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>?? ????????</comment>
+</row>
+<row name="time_created" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????? ??????????</comment>
+</row>
+<key type="INDEX" name="visitor_id">
+<part>visitor_id</part>
+</key>
+<key type="UNIQUE" name="visitor_id__page_id">
+<part>visitor_id</part>
+<part>page_id</part>
+</key>
+<key type="INDEX" name="page_id">
+<part>page_id</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>id</part>
+</key>
+<comment>???????? ?? ???????? ???????????? ???????????? ?????</comment>
+</table>
+<table x="531" y="5721" name="pages_parents">
+<row name="page_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<comment>????????????? ????????</comment>
+</row>
+<row name="parent_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????????????? ???????????? ????????</comment>
+</row>
+<key type="INDEX" name="page_id">
+<part>page_id</part>
+</key>
+<key type="INDEX" name="parent_id">
+<part>parent_id</part>
+</key>
+<comment>???????? ????? ? ?? ????????</comment>
+</table>
+<table x="700" y="5721" name="pages_permissions">
+<row name="permission_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="name" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>permission_id</part>
+</key>
+<comment>???? ??????? ????????????? ? ????????? ? ???????</comment>
+</table>
+<table x="894" y="5721" name="pages_permissions_data">
+<row name="permission_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="page_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="allow" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>permission_id</part>
+<part>page_id</part>
+</key>
+<comment>?????? ??????? ????????????? ? ????????? ? ???????</comment>
+</table>
+<table x="1126" y="5721" name="pages_rating">
+<row name="rating_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="page_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="user_ip" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="visitor_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>?? ??????????	</comment>
+</row>
+<row name="rating" null="0" autoincrement="0">
+<datatype>TINYINT(4)</datatype>
+<default>0</default></row>
+<row name="time_created" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????? ??????</comment>
+</row>
+<key type="INDEX" name="visitor_id">
+<part>visitor_id</part>
+</key>
+<key type="INDEX" name="page_id">
+<part>page_id</part>
+</key>
+<key type="INDEX" name="page_id__user_ip">
+<part>page_id</part>
+<part>user_ip</part>
+</key>
+<key type="INDEX" name="user_ip">
+<part>user_ip</part>
+</key>
+<key type="UNIQUE" name="rating_id">
+<part>rating_id</part>
+</key>
+<comment>??????? ???????</comment>
+</table>
+<table x="1283" y="5721" name="pages_templates">
+<row name="page_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<comment>????????????? ????????</comment>
+</row>
+<row name="template" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>?????? ????????:</comment>
+</row>
+<row name="template_level" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>??????? ??????????? ?????? ??????? (?? ??????? ????????)</comment>
+</row>
+<key type="INDEX" name="page_id">
+<part>page_id</part>
+</key>
+<key type="INDEX" name="template_level">
+<part>template_level</part>
+</key>
+<comment>???????? ?????</comment>
+</table>
+<table x="10" y="6031" name="pages_url">
+<row name="page_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+<comment>????????????? ????????</comment>
+</row>
+<row name="url" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<comment>????? ???????? ??? ????????? (?????????? ????????)</comment>
+</row>
+<row name="url_type" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default><comment>URL-??? ??????? ????????</comment>
+</row>
+<key type="INDEX" name="url">
+<part>url</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>page_id</part>
+</key>
+<comment>??? ??????? ?????</comment>
+</table>
+<table x="145" y="6031" name="poll">
+<row name="poll_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="time_start" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="time_end" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="show_result" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="template" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="name" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="text_after_answer" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="INDEX" name="poll_id_time_start_time_end">
+<part>poll_id</part>
+<part>time_start</part>
+<part>time_end</part>
+</key>
+<key type="UNIQUE" name="poll_id">
+<part>poll_id</part>
+</key>
+</table>
+<table x="291" y="6031" name="poll_answered_users">
+<row name="poll_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="poll_user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="time_created" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????? ???????</comment>
+</row>
+<key type="INDEX" name="poll_id__poll_user_id">
+<part>poll_id</part>
+<part>poll_user_id</part>
+</key>
+</table>
+<table x="499" y="6031" name="poll_answers">
+<row name="answer_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="variant_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="poll_user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="answer" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="INDEX" name="variant_id">
+<part>variant_id</part>
+</key>
+<key type="UNIQUE" name="answer_id">
+<part>answer_id</part>
+</key>
+</table>
+<table x="655" y="6031" name="poll_questions">
+<row name="question_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="poll_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="type" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="position" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="template" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="name" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="INDEX" name="poll_id">
+<part>poll_id</part>
+</key>
+<key type="UNIQUE" name="question_id">
+<part>question_id</part>
+</key>
+</table>
+<table x="820" y="6031" name="poll_users">
+<row name="poll_user_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="user_ip" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>poll_user_id</part>
+</key>
+</table>
+<table x="957" y="6031" name="poll_variants">
+<row name="variant_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="question_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="position" null="0" autoincrement="0">
+<datatype>TINYINT(5)</datatype>
+<default>0</default></row>
+<row name="type" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="template" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="addition" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="INDEX" name="question_id">
+<part>question_id</part>
+</key>
+<key type="UNIQUE" name="variant_id">
+<part>variant_id</part>
+</key>
+</table>
+<table x="1112" y="6031" name="search">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="user_ip" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="keyword_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="PRIMARY">
+<part>id</part>
+</key>
+</table>
+<table x="1228" y="6031" name="search_keywords">
+<row name="keyword_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+<comment>????????????? ????????? ?????</comment>
+</row>
+<row name="users" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>?????????? ??? ?????? ?????????????? ????? (?? ?????????? ?????????????)</comment>
+</row>
+<row name="amount" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>??????? ??? ?????? ?? ?????</comment>
+</row>
+<row name="keyword" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>???????? ????? ??????? ??????</comment>
+</row>
+<row name="found" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default><comment>?????????? ????????? ???????</comment>
+</row>
+<row name="first_time" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>???? ???????, ????? ?????? ? ?????? ???</comment>
+</row>
+<row name="last_time" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>???? ???????, ????? ?????? ? ????????? ???</comment>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>keyword_id</part>
+</key>
+</table>
+<table x="1414" y="6031" name="settings">
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<comment>??? ????????????</comment>
+</row>
+<row name="value" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>???????? ????</comment>
+</row>
+<row name="title" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<comment>???????? ?????????</comment>
+</row>
+<key type="UNIQUE" name="name">
+<part>name</part>
+</key>
+</table>
+<table x="10" y="6226" name="smiles">
+<row name="smile_id" null="0" autoincrement="1">
+<datatype>INT(11)</datatype>
+</row>
+<row name="main" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default></row>
+<row name="priority" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="smile" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="alt" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="img" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="UNIQUE" name="smile_id">
+<part>smile_id</part>
+</key>
+</table>
+<table x="121" y="6226" name="subscribe">
+<row name="id" null="0" autoincrement="1">
+<datatype>INT(11)</datatype>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="variant_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="time_add" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="subscribe" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="UNIQUE" name="id">
+<part>id</part>
+</key>
+</table>
+<table x="255" y="6226" name="subscribe_pages_comments">
+<row name="page_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????????????? ????????</comment>
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>????????????? ????????????</comment>
+</row>
+<row name="unsubscribe" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default><comment>??????? ?? ???????? (0 - ???, 1 - ??)</comment>
+</row>
+<row name="time_lastmail" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>???? ??????????? ?????????? ??????</comment>
+</row>
+<row name="time_subscribe" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>?????, ????? ???????????? ??????????</comment>
+</row>
+<row name="time_unsubscribe" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>?????, ????? ???????????? ?????????</comment>
+</row>
+<key type="INDEX" name="user_id">
+<part>user_id</part>
+</key>
+<key type="INDEX" name="unsubscribe">
+<part>unsubscribe</part>
+</key>
+<key type="INDEX" name="page_id">
+<part>page_id</part>
+</key>
+<key type="UNIQUE" name="page_id__user_id">
+<part>page_id</part>
+<part>user_id</part>
+</key>
+<comment>???????? ? ????????????, ??????? ????????? ?? ???</comment>
+</table>
+<table x="511" y="6226" name="subscribe_variants">
+<row name="variant_id" null="0" autoincrement="1">
+<datatype>INT(11)</datatype>
+</row>
+<row name="position" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<row name="comment" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="UNIQUE" name="id">
+<part>variant_id</part>
+</key>
+</table>
+<table x="706" y="6226" name="unsubscribe">
+<row name="email" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<comment>?-mail</comment>
+</row>
+<row name="email_failed" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default><comment>????????? ?????-????? (0 - ???, 1 - ??)</comment>
+</row>
+<row name="unsubscribe" null="0" autoincrement="0">
+<datatype>TINYINT(1)</datatype>
+<default>0</default><comment>??????? ?? ???????? (0 - ???, 1 - ??)</comment>
+</row>
+<row name="uniq_hash" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<comment>??? ????????? ???????? E-mail ????????????</comment>
+</row>
+<row name="time_lastmail" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>???? ??????????? ?????????? ??????</comment>
+</row>
+<row name="time_unsubscribe" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+<default>0</default><comment>?????, ????? ???????????? ?????????</comment>
+</row>
+<key type="UNIQUE" name="email">
+<part>email</part>
+</key>
+</table>
+<table x="856" y="6226" name="users_pages">
+<row name="user_id" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+<comment>????????????? ????????????</comment>
+</row>
+<row name="user_page" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<comment>??? ???????? (?????????)</comment>
+</row>
+<key type="UNIQUE" name="subdomain">
+<part>user_page</part>
+</key>
+<key type="PRIMARY" name="PRIMARY">
+<part>user_id</part>
+</key>
+<comment>???????? ???????? ???????????????? ???????</comment>
+</table>
+<table x="1010" y="6226" name="warnings_ip">
+<row name="ip" null="0" autoincrement="1">
+<datatype>INT(10)</datatype>
+</row>
+<row name="warnings" null="0" autoincrement="0">
+<datatype>INT(10)</datatype>
+</row>
+<row name="notice" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+</row>
+<key type="PRIMARY" name="PRIMARY">
+<part>ip</part>
+</key>
+</table>
+<table x="1107" y="217" name="new table">
+<row name="id" null="1" autoincrement="1">
+<datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+</sql>
