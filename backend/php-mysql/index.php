@@ -2,14 +2,14 @@
 	set_time_limit(0);
 	function setup_saveloadlist() {
 		define("SERVER","localhost");
-		define("USER","lebnik_test");
+		define("USER","root");
 		define("PASSWORD","");
-		define("DB","lebnik_test");
+		define("DB","test");
 		define("TABLE","wwwsqldesigner");
 	}
 	function setup_import() {
 		define("SERVER","localhost");
-		define("USER","lebnik_test");
+		define("USER","root");
 		define("PASSWORD","");
 		define("DB","information_schema");
 	}
