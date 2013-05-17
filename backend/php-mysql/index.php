@@ -1,5 +1,5 @@
 <?php
-	set_time_limit(0);
+	set_time_limit(250);
 	function setup_saveloadlist() {
 		define("SERVER","localhost");
 		define("USER","root");
@@ -20,7 +20,19 @@
 		if (!$res) return false;
 		return true;
 	}
-
+  // запись данных в лог-файл
+  function l($data = ''){
+    if($data){
+      $path = __FILE__.'.log';
+      if( $fp = fopen($path, 'a') ){
+        fwrite ($fp, "\n---------------DATE: ".date("H:i:s d.m.Y")."--------------\n".(is_array($data)? print_r($data,1) : $data) );
+        fclose ($fp);
+        @chmod($path, 0664);
+      }else{
+        throw new Exception('access write');
+      }
+    }
+  }
 	function import() {
 		$db = (isset($_GET["database"]) ? $_GET["database"] : "information_schema");
 		$db = mysql_real_escape_string($db);
@@ -71,7 +83,7 @@
 					WHERE CONSTRAINT_TYPE = 'FOREIGN KEY'
 					AND c.TABLE_SCHEMA = '".$db."' AND c.TABLE_NAME = '".$table."'
 					AND k.COLUMN_NAME = '".$name."'";
-				$result3 = mysql_query($q);
+				$result3 = null;//mysql_query($q);
 
 				while ($row = mysql_fetch_array($result3)) {
 					$xml .= '<relation table="'.$row["table"].'" row="'.$row["column"].'" />';
