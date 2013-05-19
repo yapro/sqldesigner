@@ -1,7 +1,7 @@
 <?php
 $setup_saveloadlist = array(
 	"SERVER" => "localhost",
-	"USER" => "root",
+	"USER" => "root1",
 	"PASSWORD" => "",
 	"DB" => "test",
 	"TABLE" => "wwwsqldesigner"
