@@ -16,13 +16,15 @@
 		define("DB", $setup_import['DB']);
 	}
 	function connect() {
-		$conn = mysql_connect(SERVER,USER,PASSWORD);
-		if (!$conn) return false;
-		$res = mysql_select_db(DB);
-		if (!$res) return false;
+		if( !mysql_connect(SERVER,USER,PASSWORD) ){
+			throw new Exception('mysql_connect');
+		}
+		if( !mysql_select_db(DB) ){
+			throw new Exception('mysql_select_db');
+		}
 		return true;
 	}
-  // запись данных в лог-файл
+  // Р·Р°РїРёСЃСЊ РґР°РЅРЅС‹С… РІ Р»РѕРі-С„Р°Р№Р»
   function l($data = ''){
     if($data){
       $path = __FILE__.'.log';
@@ -48,7 +50,7 @@
 			$arr[] = $datatypes[$i];
 		}
 
-		$result = mysql_query("SELECT * FROM TABLES WHERE TABLE_SCHEMA = '".$db."'");
+		if( $result = mysql_query("SELECT * FROM TABLES WHERE TABLE_SCHEMA = '".$db."'") ){
 		while ($row = mysql_fetch_array($result)) {
 			$table = $row["TABLE_NAME"];
 			$xml .= '<table name="'.$table.'">';
@@ -129,6 +131,9 @@
 				$xml .= '</key>';
 			}
 			$xml .= "</table>";
+		}
+		}else{
+	        throw new Exception( mysql_error() );
 		}
 		$arr[] = $xml;
 		$arr[] = '</sql>';

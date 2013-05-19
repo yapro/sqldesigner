@@ -2,7 +2,15 @@ function _(str) { /* getText */
 	if (!(str in window.LOCALE)) { return str; }
 	return window.LOCALE[str];
 }
-
+/* Lebnik console.log(SQL.Designer.relations);
+SQL.Designer.relations[0]
+	SQL.Designer.relations[0].row1.data.title - имя поля
+		SQL.Designer.relations[0].row1.dom.container - строка
+			$(SQL.Designer.relations[0].row1.dom.container).closest("TABLE").find("TD:first").text() - имя таблицы
+	SQL.Designer.relations[0].row2.data.title
+SQL.Designer.relations[1]
+SQL.Designer.relations[итд]
+*/
 var DATATYPES = false;
 var LOCALE = {};
 var SQL = {};
@@ -1824,7 +1832,8 @@ SQL.RowManager.prototype.rowClick = function(e) { /* draw relation after clickin
 	var r2 = e.target;
 	
 	if (r1 == r2) { return; }
-	
+	console.log(r1.data.title);// Lebnik
+	console.log(r2);
 	this.owner.addRelation(r1, r2);
 }
 
