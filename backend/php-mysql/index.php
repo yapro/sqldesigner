@@ -1,17 +1,19 @@
 <?php
 	set_time_limit(250);
 	function setup_saveloadlist() {
-		define("SERVER","localhost");
-		define("USER","root");
-		define("PASSWORD","");
-		define("DB","test");
-		define("TABLE","wwwsqldesigner");
+		include('config.php');
+		define("SERVER", $setup_saveloadlist['SERVER']);
+		define("USER", $setup_saveloadlist['USER']);
+		define("PASSWORD", $setup_saveloadlist['PASSWORD']);
+		define("DB", $setup_saveloadlist['DB']);
+		define("TABLE", $setup_saveloadlist['TABLE']);
 	}
 	function setup_import() {
-		define("SERVER","localhost");
-		define("USER","root");
-		define("PASSWORD","");
-		define("DB","information_schema");
+		include('config.php');
+		define("SERVER", $setup_import['SERVER']);
+		define("USER", $setup_import['USER']);
+		define("PASSWORD", $setup_import['PASSWORD']);
+		define("DB", $setup_import['DB']);
 	}
 	function connect() {
 		$conn = mysql_connect(SERVER,USER,PASSWORD);
