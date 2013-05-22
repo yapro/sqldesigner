@@ -2,15 +2,7 @@ function _(str) { /* getText */
 	if (!(str in window.LOCALE)) { return str; }
 	return window.LOCALE[str];
 }
-/* Lebnik console.log(SQL.Designer.relations);
-SQL.Designer.relations[0]
-	SQL.Designer.relations[0].row1.data.title - имя поля
-		SQL.Designer.relations[0].row1.dom.container - строка
-			$(SQL.Designer.relations[0].row1.dom.container).closest("TABLE").find("TD:first").text() - имя таблицы
-	SQL.Designer.relations[0].row2.data.title
-SQL.Designer.relations[1]
-SQL.Designer.relations[итд]
-*/
+
 var DATATYPES = false;
 var LOCALE = {};
 var SQL = {};
@@ -466,6 +458,7 @@ SQL.Row.prototype.isPrimary = function() {
 }
 
 SQL.Row.prototype.isUnique = function() {
+  return true;// Lebnik
 	for (var i=0;i<this.keys.length;i++) {
 		var k = this.keys[i];
 		var t = k.getType();
@@ -661,7 +654,7 @@ SQL.Table.prototype.init = function(owner, name, x, y, z) {
 
 SQL.Table.prototype._build = function() {
 	this.dom.container = OZ.DOM.elm("div", {className:"table"});
-	this.dom.content = OZ.DOM.elm("table");
+	this.dom.content = OZ.DOM.elm("table", {className:"table_"});// Lebnik
 	var thead = OZ.DOM.elm("thead");
 	var tr = OZ.DOM.elm("tr");
 	this.dom.title = OZ.DOM.elm("td", {className:"title", colSpan:2});
@@ -1494,7 +1487,7 @@ SQL.IO.prototype.serverlist = function(e) {
 }
 
 SQL.IO.prototype.serverimport = function(e) {
-	var name = prompt(_("serverimportprompt"), "");
+	var name = prompt(_("serverimportprompt"), "test");// Lebnik
 	if (!name) { return; }
 	var bp = this.owner.getOption("xhrpath");
 	var url = bp + "backend/"+this.dom.backend.value+"/?action=import&database="+name;
@@ -1826,11 +1819,11 @@ SQL.RowManager.prototype.tableClick = function(e) { /* create relation after cli
 }
 
 SQL.RowManager.prototype.rowClick = function(e) { /* draw relation after clicking target row */
-	if (!this.connecting) { return; }
+  if (!this.connecting) { return; }// проверка, а нажата ли кнопка Создать внешний ключ
 	
 	var r1 = this.selected;
 	var r2 = e.target;
-	
+
 	if (r1 == r2) { return; }
 	console.log(r1.data.title);// Lebnik
 	console.log(r2);
@@ -1861,7 +1854,8 @@ SQL.RowManager.prototype.foreigndisconnect = function(e) { /* remove connector *
 	var rels = this.selected.relations;
 	for (var i=rels.length-1;i>=0;i--) {
 		var r = rels[i];
-		if (r.row2 == this.selected) { this.owner.removeRelation(r); }
+    this.owner.removeRelation(r);// Lebnik добавил
+		// Lebnik скрыл: if (r.row2 == this.selected) { this.owner.removeRelation(r); }
 	}
 	this.redraw();
 }
@@ -1926,6 +1920,7 @@ SQL.RowManager.prototype.redraw = function() {
 		this.dom.foreignconnect.disabled = true;
 		this.dom.foreigndisconnect.disabled = true;
 	}
+  this.dom.foreigndisconnect.disabled = false;// Lebnik
 }
 
 SQL.RowManager.prototype.press = function(e) {

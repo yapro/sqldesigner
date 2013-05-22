@@ -1,4 +1,6 @@
 <?php
+define('_', '~'.md5(uniqid(time())).'~');// спец. апостроф
+
 	set_time_limit(250);
 	function setup_saveloadlist() {
 		include('config.php');
@@ -22,21 +24,11 @@
 		if( !mysql_select_db(DB) ){
 			throw new Exception('mysql_select_db');
 		}
+    mysql_query("SET NAMES UTF8");
+    setlocale(LC_ALL, 'ru_RU.UTF-8');
+    mb_internal_encoding("UTF-8");
 		return true;
 	}
-  // запись данных в лог-файл
-  function l($data = ''){
-    if($data){
-      $path = __FILE__.'.log';
-      if( $fp = fopen($path, 'a') ){
-        fwrite ($fp, "\n---------------DATE: ".date("H:i:s d.m.Y")."--------------\n".(is_array($data)? print_r($data,1) : $data) );
-        fclose ($fp);
-        @chmod($path, 0664);
-      }else{
-        throw new Exception('access write');
-      }
-    }
-  }
 	function import() {
 		$db = (isset($_GET["database"]) ? $_GET["database"] : "information_schema");
 		$db = mysql_real_escape_string($db);
@@ -141,6 +133,7 @@
 	}
 
 	$a = (isset($_GET["action"]) ? $_GET["action"] : false);
+
 	switch ($a) {
 		case "list":
 			setup_saveloadlist();
@@ -205,9 +198,208 @@
 			header("Content-type: text/xml");
 			echo import();
 		break;
+
+    case 'setRelationshipFields':
+
+      header('Content-type: application/json');
+
+      if( !$_POST || !isset($_POST['data']) || !$_POST['data'] ){
+        echo json_encode(array('msg'=>'data empty'));
+        exit;
+      }
+
+      setup_saveloadlist();
+      if (!connect()) {
+        header("HTTP/1.0 503 Service Unavailable");
+        break;
+      }
+
+      yapro::mysql('TRUNCATE TABLE relationship_fields');
+
+      foreach($_POST['data'] as $r){
+/*
+        $r = @mysql_fetch_assoc( yapro::mysql('SELECT * FROM relationship_fields WHERE
+        ( table1 = '._.$r['table1']._.' AND field1 = '._.$r['field1']._.' AND table2 = '._.$r['table2']._.' AND field2 = '._.$r['field2']._.' )
+        OR
+        ( table1 = '._.$r['table2']._.' AND field1 = '._.$r['field2']._.' AND table2 = '._.$r['table1']._.' AND field2 = '._.$r['field1']._.' )
+        ') );
+
+        if( !$r ){
+
+        }
+*/
+          yapro::mysql('INSERT INTO relationship_fields SET
+          table1 = '._.$r['table1']._.',
+          field1 = '._.$r['field1']._.',
+          table2 = '._.$r['table2']._.',
+          field2 = '._.$r['field2']._);
+
+      }
+
+      echo json_encode(array('msg'=>'sucessfull saved'));
+
+      break;
+
+    case 'getRelationshipFields':
+
+      header('Content-type: application/json');
+
+      setup_saveloadlist();
+      if (!connect()) {
+        header("HTTP/1.0 503 Service Unavailable");
+        break;
+      }
+
+      $data = array();
+
+      if( $q = yapro::mysql('SELECT * FROM relationship_fields') ){
+
+        while ($r = mysql_fetch_array($q)) {
+
+          $data[] = $r;
+
+        }
+      }
+
+      echo json_encode(array('data'=>$data));
+
+      break;
+
 		default: header("HTTP/1.0 501 Not Implemented");
 	}
 
+class yapro
+{
+  static $mysql_errno = 0;
+
+  // запись данных в лог-файл
+  static function log($data = '')
+  {
+    if($data){
+
+      $path = __FILE__.'.log';
+
+      if( $fp = fopen($path, 'a') ){
+
+        fwrite ($fp, "\n---------------DATE: ".date("H:i:s d.m.Y")."--------------\n".(is_array($data)? print_r($data,1) : $data) );
+        fclose ($fp);
+        @chmod($path, 0664);
+
+      }else{
+        throw new Exception('access write');
+      }
+    }
+  }
+  // безопасно выполняет запрос
+  static function mysql($s = '', $print = null, $ignore_errno = 0)
+  {
+    $e = explode(_, $s);
+
+    if( count($e) > 1 ){
+
+      $sql = self::sql($s, $print);
+
+    }else{
+
+      $sql = $s;
+
+      if($print=='log' || $print==2){
+
+        self::log($sql);
+
+      }else if($print){
+
+        echo "<br>".$sql.'<br>';
+
+      }
+    }
+
+    self::$mysql_errno = 0;
+
+    $q = mysql_query($sql);
+
+    self::$mysql_errno = $errno = mysql_errno();
+
+    if($errno && (!$ignore_errno || ($ignore_errno && $errno!=$ignore_errno) ) ){// 1062 - Duplicate
+
+      self::error('mysql_ : '.$errno.' : '.mysql_error()."\n".$sql);
+
+    }
+    return $q;
+  }
+
+  // Escape-ирует запрос
+  static function sql($s='', $print=false){
+
+    $switch_check = strtolower(mb_substr($s, 0, 6));
+
+    switch ($switch_check){
+
+      case 'insert':
+
+        $s = str_replace("\\", "\\\\", $s);
+        break;
+
+      case 'update':
+
+        $e = explode(_.'WHERE'._, $s);
+        if($e['1']){
+          $s = str_replace("\\", "\\\\", $e['0']).' WHERE '.str_replace("\\", "\\\\\\\\", $e['1']);
+        }else{
+          $s = str_replace("\\", "\\\\", $s);
+        }
+        break;
+
+      case 'delete':
+
+        $s = str_replace("\\", "\\\\\\\\", $s);
+        break;
+
+      default://--select
+        //3.x $s = str_replace("\\", "\\\\\\\\\\\\\\", $s);
+        $s = str_replace("\\", "\\\\", $s);
+    }
+
+    //echo '<!-- '.str_replace(_, "'", str_replace("'", "''", $s)).' -->';
+
+    self::log('z='._);
+
+    if($print==='log' || $print==2){
+
+      self::log(str_replace(_, "'", str_replace("'", "''", $s)));
+
+    }else if($print){
+
+      echo "<br>".str_replace(_, "'", str_replace("'", "''", $s)).'<br>';
+
+    }
+
+    return str_replace(_, "'", str_replace("'", "''", $s));
+  }
+  // в тех случаях, когда допущена обишка разработчиком (функция отладки)
+  static function error($text='не указана'){
+
+    $error = 'Ошибка на странице: '.$_SERVER['REQUEST_URI']."\n".
+      'При переходе с страницы: '.$_SERVER['HTTP_REFERER']."\n".
+      ($GLOBALS['SYSTEM_SCRIPT']?'SYSTEM_SCRIPT: '.$GLOBALS['SYSTEM_SCRIPT']."\n":'').
+      'IP пользователя: '.$_SERVER['REMOTE_ADDR']."\n".
+      'Отладочная информация: '.$text."\n".
+      (mysql_errno()?"-----------------------MySQL-----------------------\n".mysql_error()."\n":'').
+      ($_SESSION?"------------------------SESSION----------------------\n".print_r($_SESSION, true):'').
+      ($_COOKIE?"------------------------COOKIE----------------------\n".print_r($_COOKIE, true):'').
+      ($_GET?"-----------------------GET-----------------------\n".print_r($_GET, true)."\n":'').
+      ($_POST?"------------------------POST----------------------\n".print_r($_POST, true)."\n":'').
+      ($_FILES?"------------------------FILES----------------------\n".print_r($_FILES, true):'');
+
+    self::log($error);
+
+    $return = 'Извините, возникла ошибка программного характера.<br />
+    Программный отдел уже осведомлен и решает данную проблему.<br />
+    Приносим свои извинения за доставленное неудобство.';
+
+    return $_POST['ajax']? str_replace('<br />', " \n", $return) : $return;
+  }
+}
 
 	/*
 		list: 501/200

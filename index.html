@@ -48,6 +48,8 @@
 			<hr/>
 		
 			<input type="button" id="options" />
+      <input type="button" id="addID" value="addID" />
+      <input type="button" id="saveKeys" value="saveKeys" />
 			<a href="http://code.google.com/p/wwwsqldesigner/w/list" target="_blank"><input type="button" id="docs" value="" /></a>
 		</div>
 	
@@ -248,9 +250,129 @@
 			</tbody>
 		</table>
 	</div>
-	
+  <script language="Javascript" type="text/javascript" src="/js/jquery-1.7.1.js"></script>
 	<script type="text/javascript">
 		var d = new SQL.Designer();
+
+    var allow_send_ajax = true;
+
+    (function($){ // encapsulate jQuery
+
+      $("#addID").click(function(){// создаем ID-ки для полей, чтобы после показать связи
+
+        if( allow_send_ajax ){
+
+          $(".table").each(function(){
+
+            var tableName = $("TD:first", this).text();
+
+            $("TBODY", this).each(function(){
+
+              var fieldName = $(".title",this).text();
+              $(this).attr("id", tableName+"___"+fieldName);// уникальный ключ
+
+            });
+
+          });
+
+          $.getJSON('/backend/php-mysql/index.php?action=getRelationshipFields', function(r){
+
+            allow_send_ajax = true;
+
+            //$.fancybox.hideActivity();
+
+            if(r && typeof(r) == "object" && r.data && typeof(r.data) == "object" ){
+
+              $.each(r.data, function(i,e){
+
+                var r1 = $("#" + e.table1 + "___" + e.field1).trigger("click");
+
+                $("#foreignconnect").trigger("click");
+
+                var r2 = $("#" + e.table2 + "___" + e.field2).trigger("click");
+
+                //SQL.RowManager.prototype.owner.addRelation(r1, r2);
+
+              });
+
+            }else{
+
+              alert("Возникла яваскрипт ошибка при получении ответа");
+
+            }
+
+          }).error(function(){
+
+            allow_send_ajax = true;
+
+            //$.fancybox.hideActivity();
+
+            alert("Возникла яваскрипт ошибка в getJSON");
+
+          });
+        }
+      });
+
+      $("#saveKeys").click(function(){
+
+        if( allow_send_ajax ){
+
+          //allow_send_ajax = false;
+
+          // Lebnik console.log(SQL.Designer.relations);
+          var data = Array();
+
+          /*
+           SQL.Designer.relations[0]
+           SQL.Designer.relations[0].row1.data.title - имя поля
+           SQL.Designer.relations[0].row1.dom.container - строка
+           $(SQL.Designer.relations[0].row1.dom.container).closest("TABLE").find("TD:first").text() - имя таблицы
+           SQL.Designer.relations[0].row2.data.title
+           SQL.Designer.relations[1]
+           SQL.Designer.relations[итд]
+           */
+
+          $.each(SQL.Designer.relations, function(i,e){
+
+            data[ i ] = {
+              table1 : $(e.row1.dom.container).closest("TABLE").find("TD:first").text(),
+              field1 : e.row1.data.title,
+              table2 : $(e.row2.dom.container).closest("TABLE").find("TD:first").text(),
+              field2 : e.row2.data.title
+            };
+
+          });
+          //console.log(data);
+
+          $.post('/backend/php-mysql/index.php?action=setRelationshipFields', {"data":data}, function(r){
+
+            allow_send_ajax = true;
+
+            //$.fancybox.hideActivity();
+
+            if(r.msg !=""){
+
+              alert(r.msg);
+
+            }else{
+
+              alert("Возникла яваскрипт ошибка при получении ответа");
+
+            }
+
+          },"json").error(function(){
+
+              allow_send_ajax = true;
+
+              //$.fancybox.hideActivity();
+
+              alert("Возникла яваскрипт ошибка в postJSON");
+
+          });
+
+        }
+      });
+    })(jQuery);
 	</script>
 </body>
 </html>
