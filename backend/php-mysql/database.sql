@@ -8,9 +8,9 @@ CREATE TABLE `wwwsqldesigner` (
 );
 
 CREATE  TABLE `relationship_fields` (
-  `table1` VARCHAR(255) NOT NULL COMMENT 'имя таблицы' ,
-  `field1` VARCHAR(255) NOT NULL COMMENT 'имя поля' ,
-  `table2` VARCHAR(255) NOT NULL COMMENT 'имя таблицы' ,
-  `field2` VARCHAR(255) NOT NULL COMMENT 'имя поля' ,
+  `table1` VARCHAR(255) NOT NULL COMMENT 'РёРјСЏ С‚Р°Р±Р»РёС†С‹' ,
+  `field1` VARCHAR(255) NOT NULL COMMENT 'РёРјСЏ РїРѕР»СЏ' ,
+  `table2` VARCHAR(255) NOT NULL COMMENT 'РёРјСЏ С‚Р°Р±Р»РёС†С‹' ,
+  `field2` VARCHAR(255) NOT NULL COMMENT 'РёРјСЏ РїРѕР»СЏ' ,
   UNIQUE INDEX `uniqindex` USING BTREE (`table1` ASC, `field1` ASC, `table2` ASC, `field2` ASC) )
-COMMENT = 'Связи полей таблиц данной базы';
+COMMENT = 'РЎРІСЏР·Рё РїРѕР»РµР№ С‚Р°Р±Р»РёС† РґР°РЅРЅРѕР№ Р±Р°Р·С‹';

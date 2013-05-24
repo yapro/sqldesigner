@@ -48,8 +48,6 @@
 			<hr/>
 		
 			<input type="button" id="options" />
-      <input type="button" id="addID" value="addID" />
-      <input type="button" id="saveKeys" value="saveKeys" />
 			<a href="http://code.google.com/p/wwwsqldesigner/w/list" target="_blank"><input type="button" id="docs" value="" /></a>
 		</div>
 	
@@ -254,11 +252,45 @@
 	<script type="text/javascript">
 		var d = new SQL.Designer();
 
+    /*
+    SQL.IO.prototype.getDatabases = function() {
+      alert(123); return;
+      this.listresponse = this.bind(this.listresponse);
+    }
+    SQL.IO.prototype.getDatabases();
+*/
+    SQL.IO.prototype.getDatabase = function() {
+      var name = prompt(_("serverimportprompt"), "test");// Lebnik
+      if (!name) { return; }
+      var bp = this.owner.getOption("xhrpath");
+      var url = bp + "backend/"+this.dom.backend.value+"/?action=import&database="+name;
+      this.owner.window.showThrobber();
+      OZ.Request(url, this.importresponse, {xml:true});
+    }
+
     var allow_send_ajax = true;
 
     (function($){ // encapsulate jQuery
 
-      $("#addID").click(function(){// создаем ID-ки для полей, чтобы после показать связи
+
+
+      $("#addtable,#edittable,#tablekeys,#removetable,#cleartables,#addrow,#editrow,#uprow,#downrow,#foreigncreate,#removerow,#options,#docs").hide();
+
+
+/*
+      var getDatabase = $('<input type="button" id="getDatabase" value="get Database" />');
+
+      $("#options").after(getDatabase);
+
+      $(getDatabase).click(SQL.IO.prototype.getDatabase);
+*/
+
+
+      var ShowRelationship = $('<input type="button" id="ShowRelationship" value="Show Relationship" />');
+
+      $("#options").after(ShowRelationship);
+
+      $(ShowRelationship).click(function(){// создаем ID-ки для полей, чтобы после показать связи
 
         if( allow_send_ajax ){
 
@@ -313,7 +345,11 @@
         }
       });
 
-      $("#saveKeys").click(function(){
+      var SaveRelationship = $('<input type="button" id="SaveRelationship" value="Save Relationship" />');
+
+      $("#options").after(SaveRelationship);
+
+      $(SaveRelationship).click(function(){
 
         if( allow_send_ajax ){
 
@@ -343,6 +379,8 @@
 
           });
           //console.log(data);
+
+          // НУЖНА ПРОВЕРКА НА НУЛЕВОЕ КОЛ-ВО СВЯЗЕЙ, ЧТОБЫ СЛУЧАЙНО НЕ УДАЛИТЬ СВЯЗИ НЕ ПОДГРУЗИВ ИХ
 
           $.post('/backend/php-mysql/index.php?action=setRelationshipFields', {"data":data}, function(r){
 
