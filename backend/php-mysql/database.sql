@@ -7,7 +7,7 @@ CREATE TABLE `wwwsqldesigner` (
   PRIMARY KEY  (`keyword`)
 );
 
-CREATE  TABLE `relationship_fields` (
+CREATE  TABLE `sqldesigner` (
   `table1` VARCHAR(255) NOT NULL COMMENT 'имя таблицы' ,
   `field1` VARCHAR(255) NOT NULL COMMENT 'имя поля' ,
   `table2` VARCHAR(255) NOT NULL COMMENT 'имя таблицы' ,

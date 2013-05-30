@@ -214,11 +214,11 @@ define('_', '~'.md5(uniqid(time())).'~');// спец. апостроф
         break;
       }
 
-      yapro::mysql('TRUNCATE TABLE relationship_fields');
+      yapro::mysql('TRUNCATE TABLE sqldesigner');
 
       foreach($_POST['data'] as $r){
 /*
-        $r = @mysql_fetch_assoc( yapro::mysql('SELECT * FROM relationship_fields WHERE
+        $r = @mysql_fetch_assoc( yapro::mysql('SELECT * FROM sqldesigner WHERE
         ( table1 = '._.$r['table1']._.' AND field1 = '._.$r['field1']._.' AND table2 = '._.$r['table2']._.' AND field2 = '._.$r['field2']._.' )
         OR
         ( table1 = '._.$r['table2']._.' AND field1 = '._.$r['field2']._.' AND table2 = '._.$r['table1']._.' AND field2 = '._.$r['field1']._.' )
@@ -228,7 +228,7 @@ define('_', '~'.md5(uniqid(time())).'~');// спец. апостроф
 
         }
 */
-          yapro::mysql('INSERT INTO relationship_fields SET
+          yapro::mysql('INSERT INTO sqldesigner SET
           table1 = '._.$r['table1']._.',
           field1 = '._.$r['field1']._.',
           table2 = '._.$r['table2']._.',
@@ -252,7 +252,7 @@ define('_', '~'.md5(uniqid(time())).'~');// спец. апостроф
 
       $data = array();
 
-      if( $q = yapro::mysql('SELECT * FROM relationship_fields') ){
+      if( $q = yapro::mysql('SELECT * FROM sqldesigner') ){
 
         while ($r = mysql_fetch_array($q)) {
 
