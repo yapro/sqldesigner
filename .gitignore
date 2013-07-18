@@ -1,2 +1,3 @@
 .idea
 *.log
+backend/php-mysql/config.php
