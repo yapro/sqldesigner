@@ -1,3 +1,4 @@
 .idea
 *.log
+# mysql-connect settings
 backend/php-mysql/config.php
